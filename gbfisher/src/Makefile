@@ -3,7 +3,7 @@
 CC = gcc
 #CCFLAGS = -fopenmp
 
-LIBS  = gsl gslcblas m fftw3 gbmcmc
+LIBS  = gsl gslcblas m gbmcmc
 LDFLAGS = -L../../gbmcmc/src
 LDFLAGS += -L$(CONDA_PREFIX)/lib
 LD_LIBRARY_PATH +=

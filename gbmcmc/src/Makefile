@@ -77,4 +77,4 @@ install : gitversion.h gb_mcmc gb_match gb_catalog gb_mcmc_chirpmass gb_mcmc_bra
 	install gb_mcmc gb_match gb_catalog gb_mcmc_chirpmass gb_mcmc_brans_dicke $(CONDA_PREFIX)/bin
 
 clean:
-	rm *.o *.a gb_mcmc gb_match gb_catalog gb.so gb_mcmc_chirpmass gb_mcmc_brans_dicke gb_residual gitversion.h
+	rm -rf *.dSYM/ *.o *.a gb_mcmc gb_match gb_catalog gb*.so gb_mcmc_chirpmass gb_mcmc_brans_dicke gb_residual gitversion.h
