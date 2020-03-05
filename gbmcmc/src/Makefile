@@ -74,7 +74,7 @@ libgbmcmc.a : $(OBJS)
 	ar rcs libgbmcmc.a $(OBJS) #$(RPATH:%=-Wl,-rpath,%)
 
 install : gitversion.h gb_mcmc gb_match gb_catalog gb_mcmc_chirpmass gb_mcmc_brans_dicke gb_residual libgbmcmc.a
-	install gb_mcmc gb_match gb_catalog gb_mcmc_chirpmass gb_mcmc_brans_dicke $(CONDA_PREFIX)/bin
+	install gb_mcmc gb_match gb_catalog gb_mcmc_chirpmass gb_mcmc_brans_dicke $(PATH)#/bin
 
 clean:
 	rm -rf *.dSYM/ *.o *.a gb_mcmc gb_match gb_catalog gb*.so gb_mcmc_chirpmass gb_mcmc_brans_dicke gb_residual gitversion.h

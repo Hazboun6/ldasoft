@@ -51,7 +51,7 @@ Fisher_Galaxy : Fisher_Galaxy.c Subroutines.o arrays.o
 
 
 install : Confusion_Fit Bright_Remove Galaxy OrbitFile Setup Fisher_Galaxy Full_Residual
-	install Confusion_Fit Bright_Remove Galaxy OrbitFile Setup Fisher_Galaxy Full_Residual $(CONDA_PREFIX)/bin/
+	install Confusion_Fit Bright_Remove Galaxy OrbitFile Setup Fisher_Galaxy Full_Residual $(PATH)#/bin/
 
 clean:
 	rm -rf *.dSYM/ *.o Confusion_Fit Bright_Remove Galaxy OrbitFile Setup Fisher_Galaxy Full_Residual
