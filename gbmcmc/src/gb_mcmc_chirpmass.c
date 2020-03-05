@@ -58,11 +58,11 @@ int main(int argc, char* argv[])
     fprintf(stdout,"Usage: gb_mcmc_chirpmass parameter_chain.dat.0 9 [alpha] [dalpha]\n");
     return 1;
   }
-  
+
   FILE *ifile = fopen(argv[1],"r");
-  
+
   int NP = atoi(argv[2]);
-  
+
   int tideFlag   = 0;
   double alpha0  = 0.0;
   double dalpha0 = 0.0;
@@ -77,20 +77,20 @@ int main(int argc, char* argv[])
   {
     dalpha0 = atof(argv[4]);
   }
-  
+
   //set up RNG in case tidal params are used
   const gsl_rng_type * T;
   gsl_rng * r;
   gsl_rng_env_setup();
   T = gsl_rng_default;
   r = gsl_rng_alloc (T);
-  
-  
-  
+
+
+
   char filename[128];
   sprintf(filename,"mchirp_%s",argv[1]);
   FILE *ofile = fopen(filename,"w");
-  
+
   sprintf(filename,"frequencies_%s",argv[1]);
   FILE *ofile2 = fopen(filename,"w");
 
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
   FILE *ofile3 = fopen(filename,"w");
 
   //parse file
-  
+
   /*
    0)  index
    1)  logL
@@ -114,11 +114,10 @@ int main(int argc, char* argv[])
    11) phase
    12) fddot
    */
-  
-  int i,n;
-  double logL,t0,f,fdot,A,phi,theta,cosi,psi,phase,fddot;
+
+  double f,fdot,A,phi,theta,cosi,psi,phase,fddot;
   double Mc,B;
-  
+
   while(!feof(ifile))
   {
     if(NP==9)fscanf(ifile,"%lg%lg%lg%lg%lg%lg%lg%lg%lg",&f,&fdot,&A,&phi,&theta,&cosi,&psi,&phase,&fddot);
@@ -127,7 +126,7 @@ int main(int argc, char* argv[])
       fscanf(ifile,"%lg%lg%lg%lg%lg%lg%lg%lg",&f,&fdot,&A,&phi,&theta,&cosi,&psi,&phase);
       fddot = 11.0/3.0*fdot*fdot/f;
     }
-    
+
     //get tides
     if(tideFlag)
     {
@@ -137,8 +136,8 @@ int main(int argc, char* argv[])
       }while(alpha < 0.0);
     }
     else alpha = 0.0;
-    
-    
+
+
     if(fdot>0.0&&fddot>0.0)
     {
       Mc = M_fdot_fddot(f,fdot,fddot);
@@ -148,7 +147,6 @@ int main(int argc, char* argv[])
       if(Mc==Mc && B==B) fprintf(ofile,"%.12g %.12g %.12g %.12g\n",M_fdot(f,fdot),M_fddot(f,fddot),M_fdot_fddot(f,fdot,fddot),beta(f,fdot,fddot));
     }
   }
-  
+
   return 0;
 }
-
